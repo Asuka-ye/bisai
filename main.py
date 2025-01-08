@@ -57,7 +57,8 @@ def human_talk(msg,role_state):
         
         killer=role_list[0]
         begin=0
-        for word in llm.ai_talk(role_talk,killer,tANDp,clues_found,all_talk):
+        all_talk_copy=all_talk[:]
+        for word in llm.ai_talk(role_talk,killer,tANDp,clues_found,all_talk_copy):
             if not begin:
                 all_talk.append({"role": role_talk, "content": f""})
                 begin=begin+1
@@ -308,7 +309,7 @@ def list_update():
 
 def upup(role_state):
     role_state=role_state
-    if clue_mark>=len(role_list)-len(ai_list):
+    if clue_mark>=len(role_list)-len(ai_list) and role_list[0]!="1":
         return gr.update(visible=True),str(chioce_mark),Tocreater,Toplayer,gr.update(visible=True)
     if count >= human_number and  len(role_state)>0 :
         return gr.update(visible=True),str(chioce_mark),Tocreater,Toplayer,gr.update(visible=False)
