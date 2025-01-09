@@ -58,6 +58,7 @@ def human_talk(msg,role_state):
         killer=role_list[0]
         begin=0
         all_talk_copy=all_talk[:]
+        time.sleep(2)
         for word in llm.ai_talk(role_talk,killer,tANDp,clues_found,all_talk_copy):
             if not begin:
                 all_talk.append({"role": role_talk, "content": f""})
